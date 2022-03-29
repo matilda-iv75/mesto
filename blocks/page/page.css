@@ -1,0 +1,16 @@
+.page {
+    margin: 0;
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background-color: #000000;
+    position: relative;
+    overflow-x: hidden;
+    z-index: -1;
+}
+
+@media screen and (min-width: 681px) and (max-width: 896px){
+    .page {
+        padding: 0 20px;
+       }
+} 

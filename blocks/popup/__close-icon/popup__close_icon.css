@@ -1,0 +1,23 @@
+.popup__close_icon {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 438px;
+    top: -40px;
+    -webkit-transition: opacity .5s linear;
+    -o-transition: opacity .5s linear;
+    transition: opacity .5s linear;
+}
+.popup__close_icon:hover {
+    opacity: .6;
+}
+
+@media screen and (min-width: 320px) and (max-width: 680px){
+    .popup__close_icon {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        left: 262px;
+        top: -36px;
+    }
+}

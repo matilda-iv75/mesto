@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Mesto</title>
+</head>
+
+<body class="page">
+
+    <div class="popup">
+        <div class="popup_container">
+            <form class="popup-form">
+                <img class="popup__close_icon" src="./image/CloseIcon.svg" alt="закрывающая иконка">
+                <div>
+                    <h2 class="popup__title">Редактировать профиль</h2>
+                    <input class="popup-input__name" type="text">
+                    <input class="popup-input__job" type="text">
+                    <button class="popup__save-button" type="submit">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <header class="header">
+        <img class="header__logo" src="./image/header_logo.svg" alt="Логотип сайта Mesto Russia">
+        <div class="header__line"></div>
+    </header>
+
+    <main class="content">
+
+    <section class="profile">
+        <div class="profile__info">
+            <img class="profile__avatar" src="./image/avatar.jpg" alt="Фото Аватарка">
+            <div class="profile__text">
+                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                <button class="profile__edit-button" type="submit" val=""></button>
+                <p class="profile__subtitle">Исследователь океана</p>
+            </div>
+        </div>
+        <button class="profile__add-button" type="submit" value=""></button>
+    </section>
+
+    <section class="elements">
+        <div class="element">
+            <img class="element__image" src="./image/Castle.jpg" alt="Фото зАмок">
+            <div class="element__text">
+                <p class="element__title">Карачаевск</p>
+                <div class="element__like"></div>
+            </div>
+        </div>
+        <div class="element">
+            <img class="element__image" src="./image/mountains.jpg" alt="Фото горы">
+            <div class="element__text">
+                <p class="element__title">Гора Эльбрус</p>
+                <div class="element__like"></div>
+            </div>
+        </div>
+        <div class="element">
+            <img class="element__image" src="./image/mountains2.jpg" alt="Фото горы">
+            <div class="element__text">
+                <p class="element__title">Домбай</p>
+                <div class="element__like"></div>
+            </div>
+        </div>
+        <div class="element">
+            <img class="element__image" src="./image/Castle.jpg" alt="Фото зАмок">
+            <div class="element__text">
+                <p class="element__title">Карачаево-Черкессия</p>
+                <div class="element__like"></div>
+            </div>
+        </div>
+        <div class="element">
+            <img class="element__image" src="./image/mountains.jpg" alt="Фото горы">
+            <div class="element__text">
+                <p class="element__title">Гора Эльбрус</p>
+                <div class="element__like"></div>
+            </div>
+        </div>
+        <div class="element">
+            <img class="element__image" src="./image/mountains2.jpg" alt="Фото горы">
+            <div class="element__text">
+                <p class="element__title">Домбай</p>
+                <div class="element__like"></div>
+            </div>
+        </div>
+    </section>
+    </main>
+    
+    <footer class="footer">
+        <p class="footer__text">© 2020 Mesto Russia</p>
+    </footer>
+
+<script src="./script/index.js"></script>
+</body>
+</html>

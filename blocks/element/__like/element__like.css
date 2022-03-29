@@ -1,0 +1,14 @@
+.element__like {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 22px;
+    height: 19px;
+    margin-left: 10px;
+    cursor: url(../../../image/cursor.svg), auto;
+    background-image: url(../../../image/heart.svg);
+}
+.element__like:hover {
+    opacity: 0.6;
+}
+
