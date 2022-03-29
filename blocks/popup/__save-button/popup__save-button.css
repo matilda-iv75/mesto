@@ -13,6 +13,7 @@
     line-height: 22px;
     text-align: center;
     border-radius: 2px;
+    cursor: url(../../../image/cursor.svg), auto;
     -webkit-transition: opacity .5s linear;
     -o-transition: opacity .5s linear;
     transition: opacity .5s linear;

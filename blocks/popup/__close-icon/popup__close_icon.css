@@ -4,6 +4,7 @@
     height: 32px;
     left: 438px;
     top: -40px;
+    cursor: url(../../../image/cursor.svg), auto;
     -webkit-transition: opacity .5s linear;
     -o-transition: opacity .5s linear;
     transition: opacity .5s linear;
