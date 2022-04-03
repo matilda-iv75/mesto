@@ -16,12 +16,4 @@
         max-width: 282px;
         width: 100%;
     }
-    .wrap {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        max-width: 282px;
-        width: 100%;
-        text-align: center;
-    }
 }
