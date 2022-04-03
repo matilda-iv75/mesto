@@ -15,7 +15,7 @@
         max-width: 282px;
         min-height: 286px;
         flex-direction: column;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         justify-content: center;
     }
 }

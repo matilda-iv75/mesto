@@ -1,9 +1,11 @@
 .popup__close-icon {
     box-sizing:border-box;
     padding: 0;
-    position: fixed;
+    /* position: fixed; */
     width: 32px;
     height: 32px;
+    margin-bottom: 8px;
+    margin-left: 465px;
     background-color: rgba(0, 0, 0, 0.0);
     background-image: url(../../../image/CloseIcon.svg);
     cursor: pointer;
@@ -12,11 +14,6 @@
     -webkit-transition: opacity .5s linear;
     -o-transition: opacity .5s linear;
     transition: opacity .5s linear;
-    -moz-transform: translate(calc(100vw / 2 - 50% + 240px), calc(100vh / 2 - 50% - 195px));
-    -ms-transform: translate(calc(100vw / 2 - 50% + 240px), calc(100vh / 2 - 50% - 195px));
-    -o-transform: translate(calc(100vw / 2 - 50% + 240px), calc(100vh / 2 - 50% - 195px));
-    -webkit-transform: translate(calc(100vw / 2 - 50% + 240px), calc(100vh / 2 - 50% - 195px));
-    transform: translate(calc(100vw / 2 - 50% + 240px), calc(100vh / 2 - 50% - 195px));
 }
 .popup__close-icon:hover {
     opacity: .6;
@@ -29,10 +26,7 @@
         object-fit: cover;
         background-repeat: no-repeat;
         background-position: center;
-        transform: translate(calc(100vw / 2 - 50% + 130px), calc(100vh / 2 - 50% - 190px));
-        -webkit-transform: translate(calc(100vw / 2 - 50% + 130px), calc(100vh / 2 - 50% - 190px));
-        -moz-transform: translate(calc(100vw / 2 - 50% + 130px), calc(100vh / 2 - 50% - 190px));
-        -ms-transform: translate(calc(100vw / 2 - 50% + 130px), calc(100vh / 2 - 50% - 190px));
-        -o-transform: translate(calc(100vw / 2 - 50% + 130px), calc(100vh / 2 - 50% - 190px));
+        margin-left: 260px;
+        margin-bottom: 16px;
     }
 }
