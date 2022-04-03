@@ -11,7 +11,7 @@
     background-repeat: no-repeat;
     background-position: center;
     justify-items: flex-end;
-    cursor: url(../../../image/cursor.svg), auto;
+    cursor: pointer;
     -webkit-transition: opacity .5s linear;
      -o-transition: opacity .5s linear;
     transition: opacity .5s linear;
@@ -25,9 +25,8 @@
     .profile__add-button {
         margin-top: 36px;
         width: 100%;
-        background-image: url(../../../image/add_mobile_btn.svg);
+        background-size: 16px 16px;
         background-repeat: no-repeat;
         background-position: center;
-        margin-bottom: 0;
     }
 }

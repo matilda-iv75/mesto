@@ -1,13 +1,22 @@
 .popup__close-icon {
-    position: absolute;
+    box-sizing:border-box;
+    padding: 0;
+    position: fixed;
     width: 32px;
     height: 32px;
-    left: 438px;
-    top: -40px;
-    cursor: url(../../../image/cursor.svg), auto;
+    background-color: rgba(0, 0, 0, 0.0);
+    background-image: url(../../../image/CloseIcon.svg);
+    cursor: pointer;
+    border: none;
+    z-index: 5;
     -webkit-transition: opacity .5s linear;
     -o-transition: opacity .5s linear;
     transition: opacity .5s linear;
+    -moz-transform: translate(calc(100vw / 2 - 50% + 240px), calc(100vh / 2 - 50% - 195px));
+    -ms-transform: translate(calc(100vw / 2 - 50% + 240px), calc(100vh / 2 - 50% - 195px));
+    -o-transform: translate(calc(100vw / 2 - 50% + 240px), calc(100vh / 2 - 50% - 195px));
+    -webkit-transform: translate(calc(100vw / 2 - 50% + 240px), calc(100vh / 2 - 50% - 195px));
+    transform: translate(calc(100vw / 2 - 50% + 240px), calc(100vh / 2 - 50% - 195px));
 }
 .popup__close-icon:hover {
     opacity: .6;
@@ -15,10 +24,15 @@
 
 @media screen and (min-width: 320px) and (max-width: 680px){
     .popup__close-icon {
-        position: absolute;
         width: 20px;
         height: 20px;
-        left: 262px;
-        top: -36px;
+        object-fit: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        transform: translate(calc(100vw / 2 - 50% + 130px), calc(100vh / 2 - 50% - 190px));
+        -webkit-transform: translate(calc(100vw / 2 - 50% + 130px), calc(100vh / 2 - 50% - 190px));
+        -moz-transform: translate(calc(100vw / 2 - 50% + 130px), calc(100vh / 2 - 50% - 190px));
+        -ms-transform: translate(calc(100vw / 2 - 50% + 130px), calc(100vh / 2 - 50% - 190px));
+        -o-transform: translate(calc(100vw / 2 - 50% + 130px), calc(100vh / 2 - 50% - 190px));
     }
 }

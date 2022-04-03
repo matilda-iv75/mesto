@@ -2,6 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    margin-top: 48px;
     width: 100%;
     height: 50px;
     background-color: #000000;
@@ -13,7 +14,7 @@
     line-height: 22px;
     text-align: center;
     border-radius: 2px;
-    cursor: url(../../../image/cursor.svg), auto;
+    cursor: pointer;
     -webkit-transition: opacity .5s linear;
     -o-transition: opacity .5s linear;
     transition: opacity .5s linear;
@@ -21,4 +22,13 @@
 
 .popup__save-button:hover {
     opacity: .8;
+}
+
+@media screen and (min-width: 320px) and (max-width: 680px){
+.popup__save-button {
+    height: 46px;
+    margin-top: 45px;
+    font-size: 14px;
+    line-height: 17px;
+}
 }

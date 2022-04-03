@@ -1,11 +1,13 @@
 .element__like {
     margin: 0;
     padding: 0;
-    display: inline-block;
+    border: none;
     width: 22px;
     height: 19px;
     margin-left: 10px;
-    cursor: url(../../../image/cursor.svg), auto;
+    cursor: pointer;
+    opacity: 1;
+    background-color: white;
     background-image: url(../../../image/heart.svg);
 }
 .element__like:hover {
