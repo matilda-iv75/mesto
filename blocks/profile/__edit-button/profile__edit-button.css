@@ -24,7 +24,7 @@
         height: 18px;
         line-height: 18px;
         margin-left: 10px;
-        object-fit: cover;
+        background-size: 18px 18px;
         background-repeat: no-repeat;
         background-position: center;
         text-align: end;

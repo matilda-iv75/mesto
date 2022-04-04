@@ -1,10 +1,9 @@
 let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
-let saveButton = document.querySelector('.popup__save-button');
 let closeButton = document.querySelector('.popup__close-icon');
 let formElement = document.querySelector('.popup__form');
-let inputName = formElement.querySelector('.popup__input_name');
-let inputJob = formElement.querySelector('.popup__input_job');
+let inputName = formElement.querySelector('.popup__input_type_name');
+let inputJob = formElement.querySelector('.popup__input_type_job');
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
 
@@ -16,9 +15,13 @@ let profileSubtitle = document.querySelector('.profile__subtitle');
 //   });
 
 function togglePopup() {
+    if (popup.classList.contains('popup_opened')) {
+        popup.classList.toggle('popup_opened');
+    } else {
     inputName.value = profileTitle.textContent;
     inputJob.value =  profileSubtitle.textContent;
     popup.classList.toggle('popup_opened');
+    }
 }
 
 editButton.addEventListener('click', togglePopup);
