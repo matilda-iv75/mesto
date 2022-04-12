@@ -11,11 +11,13 @@ let inputName = formElement.querySelector('.popup__input_type_name');
 let inputJob = formElement.querySelector('.popup__input_type_job');
 
 let formAddElement = document.querySelector('.popup__form_add');
-let inputPlaceName = formAddElement.querySelector('.popup__input_type_place-name');
-let inputPlaceUrl = formAddElement.querySelector('.popup__input_type_place-url');
+const inputPlaceName = formAddElement.querySelector('.popup__input_type_place-name');
+const inputPlaceUrl = formAddElement.querySelector('.popup__input_type_place-url');
+
 
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
+
 
 const initialCards = [
     {
@@ -44,13 +46,6 @@ const initialCards = [
     }
   ];
 
-let elementLike = document.querySelectorAll('.element__like');
-document.querySelectorAll('.element__like').forEach(item => {
-    item.addEventListener('click', event => {
-        item.classList.toggle('element__like_active');
-    });
-});
-
 function togglePopupProfile() {
     if (popupProfile.classList.contains('popup_opened')) {
         popupProfile.classList.toggle('popup_opened');
@@ -74,12 +69,12 @@ addButton.addEventListener('click', togglePopupAdd);
 closeProfileButton.addEventListener('click', togglePopupProfile);
 closeAddButton.addEventListener('click', togglePopupAdd);
 
-function onOverlayClick(event) {
-    if (event.target === event.currentTarget) {
-        togglePopupProfile();
-    }
-}
-popupProfile.addEventListener('click', onOverlayClick);
+// function onOverlayClick(event) {
+//     if (event.target === event.currentTarget) {
+//         togglePopupProfile();
+//     }
+// }
+// popupProfile.addEventListener('click', onOverlayClick);
 
 function saveInputProfile(evt) {
     evt.preventDefault();
@@ -103,17 +98,35 @@ function render() {
 function getElement(item) {
     const newitem = template.content.cloneNode(true);
     const name = newitem.querySelector('.element__title');
-    name.textContent = item.name;
     const link = newitem.querySelector('.element__image');
+    const removeButton = newitem.querySelector('.element__remove');
+    const like = newitem.querySelector('.element__like');
+
+    name.textContent = item.name;
     link.src = item.link;
+
+    removeButton.addEventListener('click', removeElement);
+
+    like.addEventListener('click', function likeElement() {
+      like.classList.toggle('element__like_active');
+    });
+
     return newitem;
 }
 
+function removeElement(evt) {
+  const elem = evt.target.closest('.card');
+  elem.remove();
+}
+
+function creatNewElement(evt) {
+  evt.preventDefault();
+  const element = getElement({name: inputPlaceName.value, link: inputPlaceUrl.value});
+  elementContainer.prepend(element);
+  inputPlaceName.value = "";
+  inputPlaceUrl.value = "";
+}
+
+formAddElement.addEventListener('submit', creatNewElement);
+
 render();
-
-
-// function saveInputAdd(evt) {
-//     const
-// }
-
-formAddElement.addEventListener('submit', saveInputAdd);
