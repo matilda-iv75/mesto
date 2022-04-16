@@ -130,8 +130,8 @@ function likeElement(event) {
 }
 
 function OpenPopupImage(event){
-  const imageContainer = document.querySelector('.image__container');
-  const imageTitle = document.querySelector('.image__title_popup');
+  const imageContainer = document.querySelector('.popup__image-container');
+  const imageTitle = document.querySelector('.popup__image-title');
   imageContainer.src = `${event.target.src}`;
   imageTitle.textContent = event.target.parentNode.querySelector('.element__title').textContent;
   togglePopupImage();
