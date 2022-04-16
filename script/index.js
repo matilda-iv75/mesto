@@ -1,10 +1,12 @@
 let editButton = document.querySelector('.profile__edit-button');
+let addButton = document.querySelector('.profile__add-button');
 let closeProfileButton = document.querySelector('.popup__close-icon_profile');
 let closeAddButton = document.querySelector('.popup__close-icon_add');
-let addButton = document.querySelector('.profile__add-button');
+let closeImageButton = document.querySelector('.popup__close-icon_image');
 
 let popupProfile = document.querySelector('.popup_profile');
 let popupAdd = document.querySelector('.popup_add');
+let popupImage = document.querySelector('.popup_image');
 
 let formElement = document.querySelector('.popup__form_profile');
 let inputName = formElement.querySelector('.popup__input_type_name');
@@ -17,6 +19,7 @@ const inputPlaceUrl = formAddElement.querySelector('.popup__input_type_place-url
 
 let profileTitle = document.querySelector('.profile__title');
 let profileSubtitle = document.querySelector('.profile__subtitle');
+
 
 
 const initialCards = [
@@ -60,7 +63,15 @@ function togglePopupAdd() {
     if (popupAdd.classList.contains('popup_opened')) {
         popupAdd.classList.toggle('popup_opened');
     } else {
-    popupAdd.classList.toggle('popup_opened');
+      popupAdd.classList.toggle('popup_opened');
+    }
+}
+
+function togglePopupImage() {
+  if (popupImage.classList.contains('popup_opened')) {
+      popupImage.classList.toggle('popup_opened');
+  } else {
+      popupImage.classList.toggle('popup_opened');
     }
 }
 
@@ -68,13 +79,14 @@ editButton.addEventListener('click', togglePopupProfile);
 addButton.addEventListener('click', togglePopupAdd);
 closeProfileButton.addEventListener('click', togglePopupProfile);
 closeAddButton.addEventListener('click', togglePopupAdd);
+closeImageButton.addEventListener('click', togglePopupImage);
 
-// function onOverlayClick(event) {
-//     if (event.target === event.currentTarget) {
-//         togglePopupProfile();
-//     }
-// }
-// popupProfile.addEventListener('click', onOverlayClick);
+ function onOverlayClick(event) {
+    if (event.target === event.currentTarget) {
+        togglePopupProfile();
+    }
+}
+popupProfile.addEventListener('click', onOverlayClick);
 
 function saveInputProfile(evt) {
     evt.preventDefault();
@@ -90,6 +102,7 @@ formElement.addEventListener('submit', saveInputProfile);
 const elementContainer = document.querySelector('.elements');
 const template = document.querySelector('.template');
 
+
 function render() {
     const html = initialCards.map(getElement);
     elementContainer.append(...html);
@@ -101,9 +114,11 @@ function getElement(item) {
     const link = newitem.querySelector('.element__image');
     const removeButton = newitem.querySelector('.element__remove');
     const like = newitem.querySelector('.element__like');
-
+    
     name.textContent = item.name;
     link.src = item.link;
+    
+    link.addEventListener('click', OpenPopupImage);
 
     removeButton.addEventListener('click', removeElement);
 
@@ -113,6 +128,17 @@ function getElement(item) {
 
     return newitem;
 }
+
+//=====================
+function OpenPopupImage(event){
+  const imageContainer = document.querySelector('.image__container');
+  const imageTitle = document.querySelector('.image__title_popup');
+  imageContainer.src = `${event.target.src}`;
+  imageTitle.textContent = event.target.parentNode.querySelector('.element__title').textContent;
+  togglePopupImage();
+}
+
+//===============================
 
 function removeElement(evt) {
   const elem = evt.target.closest('.card');
@@ -125,6 +151,7 @@ function creatNewElement(evt) {
   elementContainer.prepend(element);
   inputPlaceName.value = "";
   inputPlaceUrl.value = "";
+  togglePopupAdd();
 }
 
 formAddElement.addEventListener('submit', creatNewElement);
