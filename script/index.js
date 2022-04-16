@@ -13,8 +13,8 @@ let inputName = formElement.querySelector('.popup__input_type_name');
 let inputJob = formElement.querySelector('.popup__input_type_job');
 
 let formAddElement = document.querySelector('.popup__form_add');
-const inputPlaceName = formAddElement.querySelector('.popup__input_type_place-name');
-const inputPlaceUrl = formAddElement.querySelector('.popup__input_type_place-url');
+let inputPlaceName = formAddElement.querySelector('.popup__input_type_place-name');
+let inputPlaceUrl = formAddElement.querySelector('.popup__input_type_place-url');
 
 
 let profileTitle = document.querySelector('.profile__title');
@@ -114,22 +114,21 @@ function getElement(item) {
     const link = newitem.querySelector('.element__image');
     const removeButton = newitem.querySelector('.element__remove');
     const like = newitem.querySelector('.element__like');
-    
+
     name.textContent = item.name;
     link.src = item.link;
-    
+
     link.addEventListener('click', OpenPopupImage);
-
     removeButton.addEventListener('click', removeElement);
-
-    like.addEventListener('click', function likeElement() {
-      like.classList.toggle('element__like_active');
-    });
+    like.addEventListener('click', likeElement);
 
     return newitem;
 }
 
-//=====================
+function likeElement(event) {
+  event.target.classList.toggle('element__like_active');
+}
+
 function OpenPopupImage(event){
   const imageContainer = document.querySelector('.image__container');
   const imageTitle = document.querySelector('.image__title_popup');
@@ -137,8 +136,6 @@ function OpenPopupImage(event){
   imageTitle.textContent = event.target.parentNode.querySelector('.element__title').textContent;
   togglePopupImage();
 }
-
-//===============================
 
 function removeElement(evt) {
   const elem = evt.target.closest('.card');

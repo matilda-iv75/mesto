@@ -2,19 +2,6 @@
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center center;
-    /* width: 862px;
-	height: 516; */
     max-width: 75vw;
     max-height: 75vh;
-}
-
-.image__wraper {
-    position: relative;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
 }
