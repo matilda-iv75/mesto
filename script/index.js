@@ -58,25 +58,25 @@ function closePopup(popup) {
 }
 
 function openPropfilePopup() {
-  const popup = popupProfile;
   inputName.value = profileTitle.textContent;
   inputJob.value =  profileSubtitle.textContent;
-  openPopup(popup);
+  openPopup(popupProfile);
 }
 
 function closeProfilePopup() {
-  const popup = popupProfile;
-  closePopup(popup);
+  closePopup(popupProfile);
 }
 
 function openCardPopup() {
-  const popup = popupAddCard;
-  openPopup(popup);
+  openPopup(popupAddCard);
 }
 
 function closeCardPopup() {
-  const popup = popupAddCard;
-  closePopup(popup);
+  closePopup(popupAddCard);
+}
+
+function closeImagePopup() {
+  closePopup(popupImage);
 }
 
 profileEditButton.addEventListener('click', openPropfilePopup);
@@ -112,15 +112,6 @@ function getElement(item) {
     const buttonRemove = newItem.querySelector('.element__remove');
     const like = newItem.querySelector('.element__like');
 
-    const handleCardClick = (item) => {
-      imageContainer.src = item.link;
-      imageContainer.alt = `Изображение ${item.name}`;
-      imageTitle.textContent = item.name;
-      const popup = popupImage;
-      openPopup(popup);
-      popup.classList.add('popup_opened_img');
-    }
-
     name.textContent = item.name;
     cardImage.src = item.link;
     cardImage.alt = `Изображение ${item.name}`;
@@ -136,9 +127,11 @@ function clickLikeElement(event) {
   event.target.classList.toggle('element__like_active');
 }
 
-function closeImagePopup() {
-  const popup = popupImage;
-  closePopup(popup);
+const handleCardClick = (item) => {
+  imageContainer.src = item.link;
+  imageContainer.alt = `Изображение ${item.name}`;
+  imageTitle.textContent = item.name;
+  openPopup(popupImage);
 }
 
 function removeElement(evt) {
