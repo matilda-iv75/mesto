@@ -40,23 +40,28 @@
     <div class="popup popup_profile">
         <div class="popup__container popup__container_profile">
             <button class="popup__close-icon popup__close-icon_profile" type="button" aria-label="Закрыть"></button>
-            <form name="popup__form" class="popup__form popup__form_profile">
+            <form name="popup__form" class="popup__form popup__form_profile" novalidate>
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input name="input_name" 
+                    <input 
+                    id="input-name" 
+                    name="input_name" 
                     class="popup__input popup__input_type_name" 
                     type="text" 
                     minlength="2" 
                     maxlength="40" 
                     required>
+                    <span id="input-name-error" class="popup__error_visible"></span>
 
                     <input 
+                    id="input-job" 
                     name="input_job" 
                     class="popup__input popup__input_type_job" 
                     type="text" 
                     minlength="2" 
                     maxlength="200" 
                     required>
-                    
+                    <span id="input-job-error" class="popup__error_visible"></span>
+
                     <button class="popup__save-button" type="submit">Сохранить</button>
             </form>
         </div>
@@ -65,9 +70,10 @@
     <div class="popup popup_add">
         <div class="popup__container popup__container_add">
             <button class="popup__close-icon popup__close-icon_add" type="button" aria-label="Закрыть"></button>
-            <form name="popup__form-add" class="popup__form popup__form_add">
+            <form name="popup__form-add" class="popup__form popup__form_add" novalidate>
                     <h2 class="popup__title">Новое место</h2>
                     <input 
+                    id="input-place-name" 
                     name="input_place-name" 
                     class="popup__input popup__input_type_place-name" 
                     type="text" 
@@ -75,13 +81,16 @@
                     minlength="2" 
                     maxlength="30"
                     required>
+                    <span id="input-place-name-error" class="popup__error_visible"></span>
 
                     <input 
+                    id="input-place-url" 
                     name="input_place-url" 
                     class="popup__input popup__input_type_place-url" 
                     type="url" 
                     placeholder="Ссылка на картинку" 
                     required>
+                    <span id="input-place-url-error" class="popup__error_visible"></span>
 
                     <button class="popup__save-button" type="submit">Создать</button>
             </form>
@@ -109,5 +118,6 @@
 
 
 <script src="./script/index.js"></script>
+<script src="./script/validate.js"></script>
 </body>
 </html>
