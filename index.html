@@ -42,8 +42,21 @@
             <button class="popup__close-icon popup__close-icon_profile" type="button" aria-label="Закрыть"></button>
             <form name="popup__form" class="popup__form popup__form_profile">
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input name="input_name" class="popup__input popup__input_type_name" type="text">
-                    <input name="input_job" class="popup__input popup__input_type_job" type="text">
+                    <input name="input_name" 
+                    class="popup__input popup__input_type_name" 
+                    type="text" 
+                    minlength="2" 
+                    maxlength="40" 
+                    required>
+
+                    <input 
+                    name="input_job" 
+                    class="popup__input popup__input_type_job" 
+                    type="text" 
+                    minlength="2" 
+                    maxlength="200" 
+                    required>
+                    
                     <button class="popup__save-button" type="submit">Сохранить</button>
             </form>
         </div>
@@ -54,8 +67,22 @@
             <button class="popup__close-icon popup__close-icon_add" type="button" aria-label="Закрыть"></button>
             <form name="popup__form-add" class="popup__form popup__form_add">
                     <h2 class="popup__title">Новое место</h2>
-                    <input name="input_place-name" class="popup__input popup__input_type_place-name" type="text" placeholder="Название">
-                    <input name="input_place-url" class="popup__input popup__input_type_place-url" type="text" placeholder="Ссылка на картинку">
+                    <input 
+                    name="input_place-name" 
+                    class="popup__input popup__input_type_place-name" 
+                    type="text" 
+                    placeholder="Название" 
+                    minlength="2" 
+                    maxlength="30"
+                    required>
+
+                    <input 
+                    name="input_place-url" 
+                    class="popup__input popup__input_type_place-url" 
+                    type="url" 
+                    placeholder="Ссылка на картинку" 
+                    required>
+
                     <button class="popup__save-button" type="submit">Создать</button>
             </form>
         </div>
