@@ -49,15 +49,35 @@ const initialCards = [
     }
   ];
 
-function openPopup(popup) {
-    popup.classList.add('popup_opened');
+function onEscapeClick(event, popup) {
+  if (event.key === 'Escape') {
+    closePopup(popup);
   }
+}
+
+
+function onOverlayClick(event, popup) {
+    if (event.target === event.currentTarget) {
+      closePopup(popup);
+    }
+}
+
+function openPopup(popup) {
+  if (popup === popupProfile || popup === popupAddCard) {
+    const button = popup.querySelector('.popup__button');
+    button.classList.add('popup__button_disabled');
+  }
+    popup.classList.add('popup_opened');
+    document.addEventListener('keydown', (event)  => onEscapeClick(event, popup));
+    popup.addEventListener('click', (event) => onOverlayClick(event, popup));
+}
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
 function openPropfilePopup() {
+
   inputName.value = profileTitle.textContent;
   inputJob.value =  profileSubtitle.textContent;
   openPopup(popupProfile);
@@ -68,6 +88,8 @@ function closeProfilePopup() {
 }
 
 function openCardPopup() {
+  inputPlaceName.value = "";
+  inputPlaceUrl.value = "";
   openPopup(popupAddCard);
 }
 
@@ -149,5 +171,6 @@ function creatNewElement(evt) {
 }
 
 formAddCardElement.addEventListener('submit', creatNewElement);
+
 
 render();
