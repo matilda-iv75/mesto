@@ -48,6 +48,7 @@ function setEventListeners (formElement, config) {
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
   inputList.forEach((inputElement) => {
+   
       inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement, config);
       toggleButtonState(inputList, buttonElement, config);
@@ -62,18 +63,20 @@ function enableValidation (config) {
       evt.preventDefault();
     });
     setEventListeners(form, config);
-    checkFormAdd(config);
+
   });
 };
 
 enableValidation(config);
 
-function checkFormAdd(config) {
-  var name = document.querySelector('.popup__input_type_place-name').value;
-  var url = document.querySelector('.popup__input_type_place-url').value;
-  var submit = document.getElementById('submit_add');
-  console.log(name.length, url.length);
-   if(name.length == 0 && url.length == 0){
-    submit.classList.add(config.inactiveButtonClass);
-   }
-  }
+// function checkFormAdd(config) {
+//   var form = document.querySelector('.popup__form-add'); 
+//   var name = form.querySelector('.popup__input_type_place-name').value;
+//   var url = form.querySelector('.popup__input_type_place-url').value;
+//   var submit = document.getElementById('submit_add');
+
+//   console.log(name.length, url.length);
+//    if(name.length == 0 && url.length == 0){
+//     submit.classList.add(config.inactiveButtonClass);
+//    }
+//   }

@@ -82,6 +82,8 @@ function closeProfilePopup() {
 }
 
 function openCardPopup() {
+  var submit = document.getElementById('submit_add');
+  submit.classList.add('popup__button_disabled');
   inputPlaceName.value = "";
   inputPlaceUrl.value = "";
   openPopup(popupAddCard);
