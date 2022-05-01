@@ -55,7 +55,6 @@ function onEscapeClick(event, popup) {
   }
 }
 
-
 function onOverlayClick(event, popup) {
     if (event.target === event.currentTarget) {
       closePopup(popup);
@@ -63,10 +62,6 @@ function onOverlayClick(event, popup) {
 }
 
 function openPopup(popup) {
-  if (popup === popupProfile || popup === popupAddCard) {
-    const button = popup.querySelector('.popup__button');
-    button.classList.add('popup__button_disabled');
-  }
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', (event)  => onEscapeClick(event, popup));
     popup.addEventListener('click', (event) => onOverlayClick(event, popup));
@@ -77,7 +72,6 @@ function closePopup(popup) {
 }
 
 function openPropfilePopup() {
-
   inputName.value = profileTitle.textContent;
   inputJob.value =  profileSubtitle.textContent;
   openPopup(popupProfile);
@@ -171,6 +165,5 @@ function creatNewElement(evt) {
 }
 
 formAddCardElement.addEventListener('submit', creatNewElement);
-
 
 render();
