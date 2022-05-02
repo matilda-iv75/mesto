@@ -22,6 +22,11 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const imageContainer = document.querySelector('.popup__image-container');
 const imageTitle = document.querySelector('.popup__image-title');
 
+const errorList = document.getElementsByTagName('span');
+const submitAdd = document.getElementById('submit_add');
+const submitProfile = document.getElementById('submit_profile');
+const popups = document.querySelectorAll('.popup');
+
 const initialCards = [
     {
       name: 'Архыз',
@@ -49,31 +54,48 @@ const initialCards = [
     }
   ];
 
-function onEscapeClick(event, popup) {
-  if (event.key === 'Escape') {
-    closePopup(popup);
-  }
+function cleanErrorMessage() {
+    for (var i = 0; i < errorList.length; i++) {
+      errorList[i].textContent = '';
+    }
 }
 
-function onOverlayClick(event, popup) {
-    if (event.target === event.currentTarget) {
-      closePopup(popup);
-    }
+function handlClosePopup() {
+  popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close-icon')) {
+          closePopup(popup)
+        }
+    });
+  });
+}
+
+function onEscapeClick(event) {
+  if (event.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
 }
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-    document.addEventListener('keydown', (event)  => onEscapeClick(event, popup));
-    popup.addEventListener('click', (event) => onOverlayClick(event, popup));
+    document.addEventListener('keydown', onEscapeClick);
 }
 
 function closePopup(popup) {
+  cleanErrorMessage();
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', onEscapeClick);
 }
 
 function openPropfilePopup() {
   inputName.value = profileTitle.textContent;
   inputJob.value =  profileSubtitle.textContent;
+  submitProfile.disabled = false;
+  submitProfile.classList.remove('popup__button_disabled');
   openPopup(popupProfile);
 }
 
@@ -82,10 +104,9 @@ function closeProfilePopup() {
 }
 
 function openCardPopup() {
-  var submit = document.getElementById('submit_add');
-  submit.classList.add('popup__button_disabled');
-  inputPlaceName.value = "";
-  inputPlaceUrl.value = "";
+  submitAdd.classList.add('popup__button_disabled');
+  formAddCardElement.reset();
+  submitAdd.disabled = true;
   openPopup(popupAddCard);
 }
 
@@ -99,9 +120,7 @@ function closeImagePopup() {
 
 profileEditButton.addEventListener('click', openPropfilePopup);
 profileAddButton.addEventListener('click', openCardPopup);
-profileCloseButton.addEventListener('click', closeProfilePopup);
-popupCardCloseButton.addEventListener('click', closeCardPopup);
-popupImageCloseButton.addEventListener('click', closeImagePopup);
+handlClosePopup();
 
 function saveInputProfile(evt) {
     evt.preventDefault();
@@ -116,7 +135,6 @@ formProfileElement.addEventListener('submit', saveInputProfile);
 
 const elementContainer = document.querySelector('.elements');
 const template = document.querySelector('.template');
-
 
 function render() {
     const html = initialCards.map(getElement);
@@ -161,9 +179,7 @@ function creatNewElement(evt) {
   evt.preventDefault();
   const element = getElement({name: inputPlaceName.value, link: inputPlaceUrl.value});
   elementContainer.prepend(element);
-  closeCardPopup();
-  inputPlaceName.value = "";
-  inputPlaceUrl.value = "";
+  closeCardPopup(); 
 }
 
 formAddCardElement.addEventListener('submit', creatNewElement);
