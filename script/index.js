@@ -55,7 +55,7 @@ const initialCards = [
   ];
 
 function cleanErrorMessage() {
-    for (var i = 0; i < errorList.length; i++) {
+    for (let i = 0; i < errorList.length; i++) {
       errorList[i].textContent = '';
     }
 }
@@ -73,7 +73,7 @@ function handlClosePopup() {
   });
 }
 
-function onEscapeClick(event) {
+function handleEscKey(event) {
   if (event.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
@@ -82,13 +82,12 @@ function onEscapeClick(event) {
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-    document.addEventListener('keydown', onEscapeClick);
+    document.addEventListener('keydown', handleEscKey);
 }
 
 function closePopup(popup) {
-  cleanErrorMessage();
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', onEscapeClick);
+  document.removeEventListener('keydown', handleEscKey);
 }
 
 function openPropfilePopup() {
@@ -96,6 +95,7 @@ function openPropfilePopup() {
   inputJob.value =  profileSubtitle.textContent;
   submitProfile.disabled = false;
   submitProfile.classList.remove('popup__button_disabled');
+  cleanErrorMessage();
   openPopup(popupProfile);
 }
 
@@ -105,6 +105,7 @@ function closeProfilePopup() {
 
 function openCardPopup() {
   submitAdd.classList.add('popup__button_disabled');
+  cleanErrorMessage();
   formAddCardElement.reset();
   submitAdd.disabled = true;
   openPopup(popupAddCard);
