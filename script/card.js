@@ -1,7 +1,8 @@
   const popupImage = document.querySelector('.popup_image');
   const imageContainer = document.querySelector('.popup__image-container');
   const imageTitle = document.querySelector('.popup__image-title');
-  const popupImageCloseButton = document.querySelector('.popup__close-icon_image'); 
+  const popupImageCloseButton = document.querySelector('.popup__close-icon_image');
+  
 export class Card {
     constructor (data, template) {
         this._title = data.name;
@@ -48,6 +49,7 @@ export class Card {
         this._buttonRemove.addEventListener('click', () => {
             this._element.remove();
         });
+
     }
 
     generateElement() {
