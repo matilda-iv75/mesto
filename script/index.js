@@ -1,5 +1,5 @@
-import {Card} from './card.js';
-import {FormValidator} from './formValidator.js';
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
@@ -21,6 +21,10 @@ const errorList = document.getElementsByTagName('span');
 const submitAdd = document.getElementById('submit_add');
 const submitProfile = document.getElementById('submit_profile');
 const popups = document.querySelectorAll('.popup');
+
+const imageContainer = document.querySelector('.popup__image-container');
+const imageTitle = document.querySelector('.popup__image-title');
+const popupImage = document.querySelector('.popup_image');
 
 const config = {
     formSelector: '.popup__form',
@@ -58,10 +62,11 @@ const initialCards = [
     }
   ];
 
-function cleanErrorMessage() {
-    for (let i = 0; i < errorList.length; i++) {
-      errorList[i].textContent = '';
-    }
+export default function handleCardClick (title, link) {
+  imageContainer.src = link;
+  imageContainer.alt = `Изображение ${title}`;
+  imageTitle.textContent = title;
+  openPopup(popupImage);
 }
 
 function handlClosePopup() {
@@ -97,9 +102,9 @@ function closePopup(popup) {
 function openPropfilePopup() {
   inputName.value = profileTitle.textContent;
   inputJob.value =  profileSubtitle.textContent;
-  submitProfile.disabled = false;
-  submitProfile.classList.remove('popup__button_disabled');
-  cleanErrorMessage();
+  const formProfileValidate = new FormValidator(config, formProfileElement);
+  formProfileValidate.enableValidation();
+  formProfileValidate.resetValidation();
   openPopup(popupProfile);
 }
 
@@ -108,10 +113,10 @@ function closeProfilePopup() {
 }
 
 function openCardPopup() {
-  submitAdd.classList.add('popup__button_disabled');
-  cleanErrorMessage();
   formAddCardElement.reset();
-  submitAdd.disabled = true;
+  const formAddCardValidate = new FormValidator(config, formAddCardElement);
+  formAddCardValidate.enableValidation();
+  formAddCardValidate.resetValidation();
   openPopup(popupAddCard);
 }
 
@@ -137,19 +142,23 @@ formProfileElement.addEventListener('submit', saveInputProfile);
 const elementContainer = document.querySelector('.elements');
 const template = document.querySelector('.template');
 
+function createCard(item, template) {
+  const card = new Card(item, template);
+  const cardElement = card.generateElement();
+  return cardElement;
+}
+
 function creatNewElement(evt) {
   evt.preventDefault();
-  const card = new Card({name: inputPlaceName.value, link: inputPlaceUrl.value}, template);
-  const element = card.generateElement({name: inputPlaceName.value, link: inputPlaceUrl.value}, template);
-  elementContainer.prepend(element);
+  const cardElement = createCard({name: inputPlaceName.value, link: inputPlaceUrl.value}, template);
+  elementContainer.prepend(cardElement);
   closeCardPopup();
 }
 
 formAddCardElement.addEventListener('submit', creatNewElement);
 
 initialCards.forEach ((item) => {
-    const card = new Card(item, template);
-    const cardElement = card.generateElement(item, template);
+    const cardElement = createCard(item, template);
     elementContainer.append(cardElement);
 });
 
