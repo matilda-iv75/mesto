@@ -62,6 +62,9 @@ const initialCards = [
     }
   ];
 
+const formProfileValidate = new FormValidator(config, formProfileElement);
+const formAddCardValidate = new FormValidator(config, formAddCardElement);
+
 export default function handleCardClick (title, link) {
   imageContainer.src = link;
   imageContainer.alt = `Изображение ${title}`;
@@ -69,7 +72,7 @@ export default function handleCardClick (title, link) {
   openPopup(popupImage);
 }
 
-function handlClosePopup() {
+function handleClosePopup() {
   popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup_opened')) {
@@ -102,8 +105,6 @@ function closePopup(popup) {
 function openPropfilePopup() {
   inputName.value = profileTitle.textContent;
   inputJob.value =  profileSubtitle.textContent;
-  const formProfileValidate = new FormValidator(config, formProfileElement);
-  formProfileValidate.enableValidation();
   formProfileValidate.resetValidation();
   openPopup(popupProfile);
 }
@@ -114,8 +115,6 @@ function closeProfilePopup() {
 
 function openCardPopup() {
   formAddCardElement.reset();
-  const formAddCardValidate = new FormValidator(config, formAddCardElement);
-  formAddCardValidate.enableValidation();
   formAddCardValidate.resetValidation();
   openPopup(popupAddCard);
 }
@@ -126,7 +125,7 @@ function closeCardPopup() {
 
 profileEditButton.addEventListener('click', openPropfilePopup);
 profileAddButton.addEventListener('click', openCardPopup);
-handlClosePopup();
+handleClosePopup();
 
 function saveInputProfile(evt) {
     evt.preventDefault();
@@ -162,9 +161,5 @@ initialCards.forEach ((item) => {
     elementContainer.append(cardElement);
 });
 
-const formList = Array.from(document.querySelectorAll(config.formSelector));
-
-formList.forEach((form) => {
-  const formValidate = new FormValidator(config, form);
-  formValidate.enableValidation();
-});
+formAddCardValidate.enableValidation();
+formProfileValidate.enableValidation();

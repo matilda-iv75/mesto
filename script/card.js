@@ -12,18 +12,18 @@ export class Card {
       return newItem;
   }
 
-  _liked() {
+  _toggleLike() {
       this._like.classList.toggle('element__like_active');
   }
 
   _setEventListeners() {
 
-      this._element.querySelector('.element__image').addEventListener('click', () => {
+    this._cardImage.addEventListener('click', () => {
           this._handleCardClick(this._title, this._link);
       });
 
       this._like.addEventListener('click', () => {
-          this._liked();
+          this._toggleLike();
       });
 
       this._buttonRemove.addEventListener('click', () => {
