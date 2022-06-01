@@ -1,5 +1,7 @@
+import Section from './Section.js';
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
+import {initialCards, elementContainer} from './Constants.js';
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
@@ -34,33 +36,6 @@ const config = {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
 }
-
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
 
 const formProfileValidate = new FormValidator(config, formProfileElement);
 const formAddCardValidate = new FormValidator(config, formAddCardElement);
@@ -138,28 +113,39 @@ formProfileElement.addEventListener('submit', saveInputProfile);
 
 // ***** добавляем карточку *****
 
-const elementContainer = document.querySelector('.elements');
+//const elementContainer = document.querySelector('.elements');
 const template = document.querySelector('.template');
 
-function createCard(item, template) {
+const createCard = new Section ({
+  data: initialCards,
+  renderer: (item) => {
   const card = new Card(item, template);
   const cardElement = card.generateElement();
-  return cardElement;
+  createCard.addItem(cardElement);
 }
+}, elementContainer);
 
-function creatNewElement(evt) {
-  evt.preventDefault();
-  const cardElement = createCard({name: inputPlaceName.value, link: inputPlaceUrl.value}, template);
-  elementContainer.prepend(cardElement);
-  closeCardPopup();
-}
+createCard.renderItems();
 
-formAddCardElement.addEventListener('submit', creatNewElement);
+// function createCard(item, template) {
+//   const card = new Card(item, template);
+//   const cardElement = card.generateElement();
+//   return cardElement;
+// }
 
-initialCards.forEach ((item) => {
-    const cardElement = createCard(item, template);
-    elementContainer.append(cardElement);
-});
+// function creatNewElement(evt) {
+//   evt.preventDefault();
+//   const cardElement = createCard({name: inputPlaceName.value, link: inputPlaceUrl.value}, template);
+//   elementContainer.prepend(cardElement);
+//   closeCardPopup();
+// }
+
+// formAddCardElement.addEventListener('submit', creatNewElement);
+
+// initialCards.forEach ((item) => {
+//     const cardElement = createCard(item, template);
+//     elementContainer.append(cardElement);
+// });
 
 formAddCardValidate.enableValidation();
 formProfileValidate.enableValidation();
