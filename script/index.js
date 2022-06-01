@@ -4,6 +4,7 @@ import {FormValidator} from './FormValidator.js';
 import {initialCards, elementContainer} from './Constants.js';
 import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
+import UserInfo from './UserInfo.js';
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
@@ -43,17 +44,16 @@ const formProfileValidate = new FormValidator(config, formProfileElement);
 const formAddCardValidate = new FormValidator(config, formAddCardElement);
 
 export default function handleCardClick (title, link) {
-  // imageContainer.src = link;
-  // imageContainer.alt = `Изображение ${title}`;
-  // imageTitle.textContent = title;
   const popupImg = new PopupWithImage(title, link, popupImage);
   popupImg.open();
   popupImg.setEventListeners();
 }
 
 function openPropfilePopup() {
-  inputName.value = profileTitle.textContent;
-  inputJob.value =  profileSubtitle.textContent;
+  const userInfo = new UserInfo (profileTitle.textContent, profileSubtitle.textContent);
+  userInfo.getUserInfo();
+  //inputName.value = profileTitle.textContent;
+  //inputJob.value =  profileSubtitle.textContent;
   formProfileValidate.resetValidation();
   const popup = new Popup(popupProfile);
   popup.open();
@@ -78,16 +78,16 @@ function openCardPopup() {
 
 profileEditButton.addEventListener('click', openPropfilePopup);
 profileAddButton.addEventListener('click', openCardPopup);
-//handleClosePopup();
 
-// function saveInputProfile(evt) {
-//     evt.preventDefault();
-//     profileTitle.textContent = inputName.value;
-//     profileSubtitle.textContent = inputJob.value;
-//     closeProfilePopup();
-// }
+function saveInputProfile(evt) {
+    evt.preventDefault();
+    const userInfo = new UserInfo (inputName.value, inputJob.value);
+    userInfo.setUserInfo();
+    const popup = new Popup(popupProfile);
+    popup.close();
+}
 
-// formProfileElement.addEventListener('submit', saveInputProfile);
+formProfileElement.addEventListener('submit', saveInputProfile);
 
 // ***** добавляем карточку *****
 
@@ -100,7 +100,7 @@ const createCard = new Section ({
   const card = new Card(item, template);
   const cardElement = card.generateElement();
   createCard.addItem(cardElement);
-}
+ }
 }, elementContainer);
 
 createCard.renderItems();
@@ -117,6 +117,16 @@ createCard.renderItems();
 //   elementContainer.prepend(cardElement);
 //   closeCardPopup();
 // }
+
+// function creatNewElement(evt) {
+//     evt.preventDefault();
+//     const cardElement = createCard({name: inputPlaceName.value, link: inputPlaceUrl.value}, template);
+
+//     //elementContainer.prepend(cardElement);
+//     //closeCardPopup();
+//     const popup = new Popup (popupAddCard);
+//     popup.close();
+//   }
 
 // formAddCardElement.addEventListener('submit', creatNewElement);
 
