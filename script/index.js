@@ -45,7 +45,9 @@ export default function handleCardClick (title, link) {
   imageContainer.src = link;
   imageContainer.alt = `Изображение ${title}`;
   imageTitle.textContent = title;
-  openPopup(popupImage);
+  const popup = new Popup(popupImage);
+  popup.open();
+  popup.setEventListeners();
 }
 
 // function handleClosePopup() {
@@ -91,18 +93,20 @@ function openPropfilePopup() {
 //   closePopup(popupProfile);
 // }
 
-// function openCardPopup() {
-//   formAddCardElement.reset();
-//   formAddCardValidate.resetValidation();
-//   openPopup(popupAddCard);
-// }
+function openCardPopup() {
+  formAddCardElement.reset();
+  formAddCardValidate.resetValidation();
+  const popup = new Popup(popupAddCard);
+  popup.open();
+  popup.setEventListeners();
+}
 
 // function closeCardPopup() {
 //   closePopup(popupAddCard);
 // }
 
 profileEditButton.addEventListener('click', openPropfilePopup);
-//profileAddButton.addEventListener('click', openCardPopup);
+profileAddButton.addEventListener('click', openCardPopup);
 //handleClosePopup();
 
 // function saveInputProfile(evt) {
