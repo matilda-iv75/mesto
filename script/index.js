@@ -1,7 +1,7 @@
 import Section from './Section.js';
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
-import {initialCards, elementContainer} from './Constants.js';
+import {initialCards, config, elementContainer, template} from './Constants.js';
 import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from './PopupWithForm.js';
@@ -32,15 +32,6 @@ const imageContainer = document.querySelector('.popup__image-container');
 const imageTitle = document.querySelector('.popup__image-title');
 const popupImage = document.querySelector('.popup_image');
 
-const config = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-}
-
 const formProfileValidate = new FormValidator(config, formProfileElement);
 const formAddCardValidate = new FormValidator(config, formAddCardElement);
 
@@ -53,8 +44,6 @@ export default function handleCardClick (title, link) {
 function openPropfilePopup() {
   const userInfo = new UserInfo (profileTitle.textContent, profileSubtitle.textContent);
   userInfo.getUserInfo();
-  //inputName.value = profileTitle.textContent;
-  //inputJob.value =  profileSubtitle.textContent;
   formProfileValidate.resetValidation();
   const popup = new Popup(popupProfile);
   popup.open();
@@ -72,21 +61,6 @@ function openCardPopup() {
 profileEditButton.addEventListener('click', openPropfilePopup);
 profileAddButton.addEventListener('click', openCardPopup);
 
-function saveInputProfile(evt) {
-    evt.preventDefault();
-    const userInfo = new UserInfo (inputName.value, inputJob.value);
-    userInfo.setUserInfo();
-    const popup = new Popup(popupProfile);
-    popup.close();
-}
-
-formProfileElement.addEventListener('submit', saveInputProfile);
-
-// ***** добавляем карточку *****
-
-//const elementContainer = document.querySelector('.elements');
-const template = document.querySelector('.template');
-
 const createCard = new Section ({
   data: initialCards,
   renderer: (item) => {
@@ -98,16 +72,50 @@ const createCard = new Section ({
 
 createCard.renderItems();
 
-function creatNewElement(evt) {
-    evt.preventDefault();
-    //const card = new Card({name: inputPlaceName.value, link: inputPlaceUrl.value}, template)
-    createCard._renderer({name: inputPlaceName.value, link: inputPlaceUrl.value}, template, elementContainer);
-    
-    //elementContainer.prepend(cardElement);
-    const popup = new Popup (popupAddCard);
-    popup.close();
-  }
+// function handleFormSubmit(evt) {
+//   evt.preventDefault();
+//   createCard._renderer({name: inputPlaceName.value, link: inputPlaceUrl.value}, template, elementContainer);
+//   const popup = new Popup (popupAddCard);
+//   popup.close();
+// }
 
-formAddCardElement.addEventListener('submit', creatNewElement);
+// function saveInputProfile(evt) {
+//     evt.preventDefault();
+//     const userInfo = new UserInfo (inputName.value, inputJob.value);
+//     userInfo.setUserInfo();
+//     const popup = new Popup(popupProfile);
+//     popup.close();
+// }
+
+const formProfile = new PopupWithForm ({selectorPopup: popupProfile,
+  handleFormSubmit: (evt) => {
+      //evt.preventDefault();
+      const userInfo = new UserInfo (inputName.value, inputJob.value);
+      userInfo.setUserInfo();
+      formProfile.close();
+     
+      //  const popup = new Popup(popupProfile);
+      //  popup.close();
+    }
+  });
+
+  formProfile.setEventListeners();
+
+// const formAddCard = new PopupWithForm ({popupAddCard, 
+//   handleFormSubmit: (evt) => {
+//     evt.preventDefault();
+//     createCard._renderer({name: inputPlaceName.value, link: inputPlaceUrl.value}, template, elementContainer);
+
+//     const popup = new Popup (popupAddCard);
+//     popup.close();
+//   }
+// });
+
+// formAddCard.setEventListeners();
+
+
+//formProfileElement.addEventListener('submit', saveInputProfile);
+//formAddCardElement.addEventListener('submit',  handleFormSubmit);
+
 formAddCardValidate.enableValidation();
 formProfileValidate.enableValidation();
