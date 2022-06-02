@@ -4,6 +4,7 @@ import {FormValidator} from './FormValidator.js';
 import {initialCards, elementContainer} from './Constants.js';
 import Popup from "./Popup.js";
 import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
 
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -60,10 +61,6 @@ function openPropfilePopup() {
   popup.setEventListeners();
 }
 
-// function closeProfilePopup() {
-//   closePopup(popupProfile);
-// }
-
 function openCardPopup() {
   formAddCardElement.reset();
   formAddCardValidate.resetValidation();
@@ -71,10 +68,6 @@ function openCardPopup() {
   popup.open();
   popup.setEventListeners();
 }
-
-// function closeCardPopup() {
-//   closePopup(popupAddCard);
-// }
 
 profileEditButton.addEventListener('click', openPropfilePopup);
 profileAddButton.addEventListener('click', openCardPopup);
@@ -105,35 +98,16 @@ const createCard = new Section ({
 
 createCard.renderItems();
 
-// function createCard(item, template) {
-//   const card = new Card(item, template);
-//   const cardElement = card.generateElement();
-//   return cardElement;
-// }
+function creatNewElement(evt) {
+    evt.preventDefault();
+    //const card = new Card({name: inputPlaceName.value, link: inputPlaceUrl.value}, template)
+    createCard._renderer({name: inputPlaceName.value, link: inputPlaceUrl.value}, template, elementContainer);
+    
+    //elementContainer.prepend(cardElement);
+    const popup = new Popup (popupAddCard);
+    popup.close();
+  }
 
-// function creatNewElement(evt) {
-//   evt.preventDefault();
-//   const cardElement = createCard({name: inputPlaceName.value, link: inputPlaceUrl.value}, template);
-//   elementContainer.prepend(cardElement);
-//   closeCardPopup();
-// }
-
-// function creatNewElement(evt) {
-//     evt.preventDefault();
-//     const cardElement = createCard({name: inputPlaceName.value, link: inputPlaceUrl.value}, template);
-
-//     //elementContainer.prepend(cardElement);
-//     //closeCardPopup();
-//     const popup = new Popup (popupAddCard);
-//     popup.close();
-//   }
-
-// formAddCardElement.addEventListener('submit', creatNewElement);
-
-// initialCards.forEach ((item) => {
-//     const cardElement = createCard(item, template);
-//     elementContainer.append(cardElement);
-// });
-
+formAddCardElement.addEventListener('submit', creatNewElement);
 formAddCardValidate.enableValidation();
 formProfileValidate.enableValidation();
