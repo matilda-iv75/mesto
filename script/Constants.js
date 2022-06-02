@@ -39,3 +39,10 @@ export const template = document.querySelector('.template');
 
 export const imageContainer = document.querySelector('.popup__image-container');
 export const imageTitle = document.querySelector('.popup__image-title');
+
+export const profileTitle = document.querySelector('.profile__title');
+export const profileSubtitle = document.querySelector('.profile__subtitle');
+
+export const popupProfile = document.querySelector('.popup_profile');
+export const popupAddCard = document.querySelector('.popup_add');
+export const popupImage = document.querySelector('.popup_image');
