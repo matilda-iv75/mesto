@@ -7,18 +7,15 @@ import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
 import {initialCards, config, elementContainer, template, 
   profileTitle, profileSubtitle, 
-  popupProfile, popupAddCard, popupImage} from './Constants.js';
+  popupProfile, popupAddCard, popupImage, 
+  formAddCardElement, inputPlaceName, inputPlaceUrl, formProfileElement, inputName, inputJob} from './Constants.js';
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 
-const formProfileElement = document.querySelector('.popup__form_profile');
-const inputName = formProfileElement.querySelector('.popup__input_type_name');
-const inputJob = formProfileElement.querySelector('.popup__input_type_job');
-
-const formAddCardElement = document.querySelector('.popup__form_add');
-const inputPlaceName = formAddCardElement.querySelector('.popup__input_type_place-name');
-const inputPlaceUrl = formAddCardElement.querySelector('.popup__input_type_place-url');
+// const formProfileElement = document.querySelector('.popup__form_profile');
+// const inputName = formProfileElement.querySelector('.popup__input_type_name');
+// const inputJob = formProfileElement.querySelector('.popup__input_type_job');
 
 const formProfileValidate = new FormValidator(config, formProfileElement);
 const formAddCardValidate = new FormValidator(config, formAddCardElement);
@@ -52,7 +49,7 @@ profileAddButton.addEventListener('click', openCardPopup);
 const createCard = new Section ({
   data: initialCards,
   renderer: (item) => {
-  const card = new Card(item, template);
+  const card = new Card (item, template);
   const cardElement = card.generateElement();
   createCard.addItem(cardElement);
  }
