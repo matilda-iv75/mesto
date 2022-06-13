@@ -1,7 +1,6 @@
 import handleCardClick from "./index.js";
 
 export class Card {
-    // constructor (data, template) {
     constructor (data, template) {
       this._title = data.name;
       this._link = data.link;

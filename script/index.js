@@ -13,10 +13,6 @@ import {initialCards, config, elementContainer, template,
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileAddButton = document.querySelector('.profile__add-button');
 
-// const formProfileElement = document.querySelector('.popup__form_profile');
-// const inputName = formProfileElement.querySelector('.popup__input_type_name');
-// const inputJob = formProfileElement.querySelector('.popup__input_type_job');
-
 const formProfileValidate = new FormValidator(config, formProfileElement);
 const formAddCardValidate = new FormValidator(config, formAddCardElement);
 
@@ -66,7 +62,7 @@ const formProfile = new PopupWithForm ({
     }
   });
 
-  formProfile.setEventListeners();
+formProfile.setEventListeners();
 
 const formAddCard = new PopupWithForm ({
   selectorPopup: popupAddCard,
