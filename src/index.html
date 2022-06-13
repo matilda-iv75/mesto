@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
+    <!-- <link rel="stylesheet" href="./pages/index.css"> -->
     <title>Mesto</title>
 </head>
 
 <body class="page">
 
     <header class="header">
-        <a class="header__link"><img class="header__logo" src="./image/header_logo.svg" alt="Логотип сайта Mesto Russia"></a>
+        <a class="header__link"><img class="header__logo" src="<%=require('./image/header_logo.svg')%>" alt="Логотип сайта Mesto Russia"></a>
     </header>
 
     <main class="content">
 
     <section class="profile">
         <div class="profile__info">
-            <img class="profile__avatar" src="./image/avatar.jpg" alt="Фото Аватарка">
+            <img class="profile__avatar" src="<%=require('./image/avatar.jpg')%>" alt="Фото Аватарка">
             <div class="profile__text">
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
                 <button class="profile__edit-button" type="button" aria-label="Редактировать"></button>
@@ -96,8 +96,8 @@
         </article>
     </template>
 
-    <script type="module" src="./script/index.js"></script>
-    <script type="module" src="./script/Card.js"></script>
+    <!-- <script type="module" src="./script/index.js"></script>
+    <script type="module" src="./script/Card.js"></script> -->
 
 </body>
 </html>
