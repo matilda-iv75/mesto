@@ -1,4 +1,4 @@
-import handleCardClick from "./index.js";
+import handleCardClick from "../pages/index.js";
 
 export class Card {
     constructor (data, template) {
@@ -29,6 +29,7 @@ export class Card {
 
       this._buttonRemove.addEventListener('click', () => {
           this._element.remove();
+          this._element = null;
       });
 
   }
