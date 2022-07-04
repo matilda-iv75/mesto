@@ -1,12 +1,11 @@
-import handleCardClick from "../pages/index.js";
-
 export class Card {
-    constructor (data, template) {
-      this._title = data.name;
-      this._link = data.link;
-      this._template = template;
-      this._handleCardClick = handleCardClick;
-  }
+  constructor ({ data, handleCardClick }, template) {
+    console.log("data card: ", data);
+    this._title = data.name;
+    this._link = data.link;
+    this._template = template;
+    this._handleCardClick = handleCardClick;
+}
 
   _getElement() {
       const newItem = this._template.content.querySelector('.card').cloneNode(true);
@@ -20,6 +19,7 @@ export class Card {
   _setEventListeners() {
 
     this._cardImage.addEventListener('click', () => {
+
           this._handleCardClick(this._title, this._link);
       });
 
