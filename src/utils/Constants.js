@@ -41,17 +41,22 @@ export const imageContainer = document.querySelector('.popup__image-container');
 export const imageTitle = document.querySelector('.popup__image-title');
 export const profileTitle = '.profile__title';
 export const profileSubtitle = '.profile__subtitle';
+export const profileAvatar ='.profile__avatar';
 
 export const popupImage = '.popup_image';
 export const popupProfile = '.popup_profile';
 export const popupAddCard = '.popup_add';
+export const popupUpdateAvatar = '.popup_updateAvatar';
+export const popupConfirmElement = '.popup_confirm';
 
 export const formAddCardElement = document.querySelector('.popup__form_add');
 export const inputPlaceName = formAddCardElement.querySelector('.popup__input_type_place-name');
 export const inputPlaceUrl = formAddCardElement.querySelector('.popup__input_type_place-url');
 
-export const formProfileElement = document.querySelector('.popup__form_profile');
+export const formUpdateAvatarElement = document.querySelector('.popup__form_updateAvatar');
 
+export const formProfileElement = document.querySelector('.popup__form_profile');
 export const inputName = formProfileElement.querySelector('.popup__input_type_name');
 export const inputJob = formProfileElement.querySelector('.popup__input_type_job');
+export const inputAvatar = formProfileElement.querySelector('.popup__input_type_avatar-url');
 
