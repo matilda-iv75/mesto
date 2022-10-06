@@ -32,13 +32,14 @@ export default class Api {
         .then(res => res.json())
         .then((data) => {
             this._userId = data._id;
-            return (data) });
+            console.log('userInfo', data);
+            return (data)
+         });
         }
 
     patchUserInfoApi(userName, userAbout) {
         this._name = userName;
         this._about = userAbout;
-        console.log('patch', this._name, this._about);
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
             headers: this._headers, 
@@ -81,8 +82,7 @@ export default class Api {
                 if (res.ok) {
                     res.json()
                     }
-                // если ошибка, отклоняем промис
-               return Promise.reject(`Ошибка: ${res.status}`);
+                return Promise.reject(`Ошибка: ${res.status}`);
               })
             .catch((err) => {
                 console.log(err); // выведем ошибку в консоль
@@ -90,27 +90,40 @@ export default class Api {
     }
 
     addNewCard(name, link) {
-        this._cardName = name;
-        this._cardLink = link;
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
             headers: this._headers, 
             body: JSON.stringify({
-                name: this._cardName,
-                link: this._cardLink
+                name,
+                link
             })
         })
             .then(res => {
                 if (res.ok) {
                     res.json()
                     }
-                // если ошибка, отклоняем промис
-               return Promise.reject(`Ошибка: ${res.status}`);
+                return Promise.reject(`Ошибка: ${res.status}`);
               })
               .catch((err) => {
                 console.log(err); // выведем ошибку в консоль
               })
     }
 
+    setLikesCard(cardID, like) {
+        return fetch(`${this._baseUrl}/cards/likes/${cardID}`, {
+              method: like ? 'PUT' : 'DELETE',
+              headers: this._headers
+            })
+            .then(res => {
+                if (res.ok) {
+                    res.json()
+                    }
+                return Promise.reject(`Ошибка: ${res.status}`);
+              })
+              .catch((err) => {
+                console.log(err); // выведем ошибку в консоль
+              })
+
+    }
 }
 

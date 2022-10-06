@@ -4,6 +4,7 @@ export default class PopupConfirm extends Popup {
     constructor({selectorPopup, handleFormSubmit}) {
         super(selectorPopup);
         this._handleFormSubmit = handleFormSubmit;
+
         this._form = this._selectorPopup.querySelector('form');
     }
 
@@ -11,11 +12,11 @@ export default class PopupConfirm extends Popup {
         this._handleFormSubmit = action;
     }
 
-    setEventListeners() {
+     setEventListeners() {
         this._form.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-            this._handleFormSubmit();
+        evt.preventDefault();
+        this._handleFormSubmit();
         });
         super.setEventListeners();
-    }
+     }
 }

@@ -43,32 +43,34 @@ api.getInitialCards().then((res) => {
 
 function newCard(item) {
   const card = new Card ({
-    data: {...item, name: item.name, link: item.link, ownerId: userId, currentUserId: userId},
+    data: {...item, currentUserId: userId},
     handleCardClick: (title, link) => {
       popupImg.open(title, link);
     },
+
     handleBusketClick: () => {
-      popupConfirm.setSubmitAction(() => {
-      api.deleteCardApi(card.getCardId())
-        .then(() => {
-        card.removeCard();
-        popupConfirm.close();
-        })
-        .catch(err => console.log(`При удалении карточки: ${err}`));
-      });
       popupConfirm.open();
-      popupConfirm.setEventListeners();
-    }
+      popupConfirm.setSubmitAction(() => {
+      api.deleteCardApi(card._id);
+      card.removeCard();
+      popupConfirm.close();
+      })
+    },
+
+    handleLikeClick: () => {
+      api.setLikesCard(card.setId(), !card.isLiked());
+      console.log('likeclick', card, card.isLiked());
+      card.setLikesInfo({ ...item });
+    } 
   },
     template);
-    return card.generateElement();
+  return card.generateElement();
 }
 
 const popupConfirm = new PopupConfirm ({
   selectorPopup: popupConfirmElement,
   handleFormSubmit: () => {}
 });
-
 popupConfirm.setEventListeners();
 
 const cardList = new Section({
@@ -80,13 +82,10 @@ const cardList = new Section({
 const formAddCard = new PopupWithForm ({
   selectorPopup: popupAddCard,
   handleFormSubmit: (data) => {
-    //newCard({...data, name: data.place, link: data.url });
-    api.addNewCard(data.place, data.url);
+    api.addNewCard(data.place, data.url)
     formAddCard.close();
-    api.getInitialCards();
   }
 });
-
 formAddCard.setEventListeners();
 
 const userInfo = new UserInfo (profileTitle, profileSubtitle, profileAvatar);
@@ -117,14 +116,12 @@ function openPropfilePopup() {
     formProfile.open();
   })
 }
-
 formProfile.setEventListeners();
 
 const formUpdateAvatar = new PopupWithForm ({
   selectorPopup: popupUpdateAvatar,
   handleFormSubmit: (data) => {
     formUpdateAvatar.close();
-    console.log('handl setAvatar: ', data);
     userInfo.setUserAvatar(data);
     api.patchUserAvatarApi(data.avatar);
     formUpdateAvatar.close();
@@ -141,7 +138,6 @@ function openCardPopup() {
   formAddCardValidate.resetValidation();
   formAddCard.open();
 }
-formAddCard.setEventListeners();
 
 profileEditButton.addEventListener('click', openPropfilePopup);
 profileAddButton.addEventListener('click', openCardPopup);
