@@ -35,7 +35,7 @@ export const config = {
 };
 
 export const elementContainer = '.elements';
-export const template = document.querySelector('.template');
+export const selectorTemplate = document.querySelector('.template');
 
 export const imageContainer = document.querySelector('.popup__image-container');
 export const imageTitle = document.querySelector('.popup__image-title');
