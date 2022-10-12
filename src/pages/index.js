@@ -68,8 +68,8 @@ function createNewCard(item) {
 }
 
 const popupConfirm = new PopupConfirm ({
-  selectorPopup: popupConfirmElement,
-  handleFormSubmit: () => {}
+  selectorPopup: popupConfirmElement
+  
 });
 popupConfirm.setEventListeners();
 
@@ -96,7 +96,6 @@ formAddCard.setEventListeners();
 
 const userInfo = new UserInfo (profileTitle, profileSubtitle, profileAvatar);
 
-//const popupImg = new PopupWithImage(popupImage, imageContainer, imageTitle);
 const popupImg = new PopupWithImage(popupImage);
 popupImg.setEventListeners();
 
@@ -115,13 +114,16 @@ const formProfile = new PopupWithForm ({
 });
 
 function openPropfilePopup() {
-  api.getUserInfoApi().then((res) => {
-    inputName.value = res.name;
-    inputJob.value = res.about;
+  // api.getUserInfoApi().then((res) => {
+  //   inputName.value = res.name;
+  //   inputJob.value = res.about;
+    userInfo.getUserInfo();
+    inputName.value = userInfo.getUserInfo().name.textContent;
+    inputJob.value = userInfo.getUserInfo().about.textContent;
     formProfileValidate.resetValidation();
     formProfile.open();
-  });
-}
+  }
+
 formProfile.setEventListeners();
 
 const formUpdateAvatar = new PopupWithForm ({

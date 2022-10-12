@@ -25,7 +25,7 @@ export default class Api {
         })
         .then(this._getResponseData)
         .then((data) => {
-            this._userId = data._id;
+            //this._userId = data._id;
             return (data)
          })
         }

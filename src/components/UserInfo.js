@@ -15,6 +15,6 @@ export default class UserInfo {
     }
 
     getUserInfo() {
-        return ({name: data.name, about: this._info, avatar: this._avatar.src});
+        return ({name: this._name, about: this._info, avatar: this._avatar.src});
     }
 }
